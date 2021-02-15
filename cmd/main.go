@@ -26,7 +26,7 @@ func initClient() *mongo.Client {
 	var err error
 	var client *mongo.Client
 
-	uri := //mongodb uri goes here
+	uri := "mongodb+srv://test-user:root@cluster0.l8hxm.mongodb.net/<dbname>?retryWrites=true&w=majority"
 	options := options.Client()
 	options.ApplyURI(uri)
 
@@ -131,6 +131,8 @@ func getUpload(write http.ResponseWriter, read *http.Request) {
 	write.Header().Set("Access-Control-Allow-Origin", "*")
     write.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 	write.Header().Set("Content-type", "mpeg/mp3")
+	write.Header().Set("Content-type", "application/octet-stream")
+	
 	uploadFile(file, filePath)
 }
 
@@ -142,6 +144,8 @@ func getDownload(write http.ResponseWriter, read *http.Request) {
 	write.Header().Set("Access-Control-Allow-Origin", "*")
     write.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 	write.Header().Set("Content-Type", "mpeg/mp3")
+	write.Header().Set("Content-type", "application/octet-stream")
+	
 	downloadFile(filePath)
 }
 
